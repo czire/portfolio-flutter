@@ -11,17 +11,30 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    
+    // Responsive padding
+    final horizontalPadding = screenWidth < 600 ? 20.0 : 40.0;
+
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          children: [
-            const LandingHeaderSection(),
-            const SizedBox(height: 64),
-            const LandingProjectsSection(),
-            const LandingSkillsSection(),
-            const LandingCopyrightSection(),
-          ],
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding,
+              vertical: 48,
+            ),
+            child: const Column(
+              children: [
+                LandingHeaderSection(),
+                SizedBox(height: 80),
+                LandingProjectsSection(),
+                LandingSkillsSection(),
+                LandingCopyrightSection(),
+              ],
+            ),
+          ),
         ),
       ),
     );

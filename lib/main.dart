@@ -7,7 +7,7 @@ import 'package:haber_portfolio/presentation/pages/contact/contact_page.dart';
 import 'package:haber_portfolio/presentation/pages/landing/landing_page.dart';
 import 'package:haber_portfolio/presentation/pages/about/about_page.dart';
 import 'package:haber_portfolio/presentation/pages/projects/projects_page.dart';
-import 'package:haber_portfolio/presentation/skills/skills_page.dart';
+import 'package:haber_portfolio/presentation/pages/skills/skills_page.dart';
 
 void main() {
   runApp(const SimplePortfolioApp());

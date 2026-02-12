@@ -7,38 +7,90 @@ class LandingSkillsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final skills = [
+    // Top 6 skills only
+    final topSkills = [
       ('HTML', FontAwesomeIcons.html5, 0.95),
       ('CSS', FontAwesomeIcons.css3, 0.90),
       ('JavaScript', FontAwesomeIcons.js, 0.78),
       ('React/Next.js', FontAwesomeIcons.react, 0.93),
       ('Flutter', FontAwesomeIcons.flutter, 0.48),
-      ('Prisma', FontAwesomeIcons.server, 0.47),
-      ('SQL', FontAwesomeIcons.database, 0.40),
       ('Git', FontAwesomeIcons.gitAlt, 0.37),
-      ('Vercel', FontAwesomeIcons.cloud, 0.90),
     ];
+
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 600;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 64),
-        // Section Title
-        Text(
-          'Skills',
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+        // Section Header
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Top Skills',
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            TextButton.icon(
+              onPressed: () {
+                Navigator.pushNamed(context, '/skills');
+              },
+              icon: const Icon(Icons.arrow_forward),
+              label: const Text('View All'),
+            ),
+          ],
         ),
         const SizedBox(height: 24),
         // Skills List
-        ...skills.map(
-          (skill) => SkillItem(
-            name: skill.$1,
-            icon: skill.$2,
-            proficiency: skill.$3,
-          ),
-        ),
+        isMobile
+            ? Column(
+                children: topSkills
+                    .map(
+                      (skill) => SkillItem(
+                        name: skill.$1,
+                        icon: skill.$2,
+                        proficiency: skill.$3,
+                      ),
+                    )
+                    .toList(),
+              )
+            : Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: topSkills
+                          .take(3)
+                          .map(
+                            (skill) => SkillItem(
+                              name: skill.$1,
+                              icon: skill.$2,
+                              proficiency: skill.$3,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                  const SizedBox(width: 32),
+                  Expanded(
+                    child: Column(
+                      children: topSkills
+                          .skip(3)
+                          .map(
+                            (skill) => SkillItem(
+                              name: skill.$1,
+                              icon: skill.$2,
+                              proficiency: skill.$3,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                ],
+              ),
       ],
     );
   }

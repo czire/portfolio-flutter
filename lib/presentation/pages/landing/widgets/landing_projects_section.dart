@@ -1,42 +1,64 @@
 import 'package:flutter/material.dart';
-
-// TODO: Replace with real project data and images
+import 'package:haber_portfolio/presentation/pages/projects/data/project_data.dart';
 
 class LandingProjectsSection extends StatelessWidget {
   const LandingProjectsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    
+    // Responsive grid columns
+    int crossAxisCount = 3;
+    if (screenWidth < 600) {
+      crossAxisCount = 1;
+    } else if (screenWidth < 900) {
+      crossAxisCount = 2;
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Featured Projects',
-          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Featured Projects',
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            TextButton.icon(
+              onPressed: () {
+                Navigator.pushNamed(context, '/projects');
+              },
+              icon: const Icon(Icons.arrow_forward),
+              label: const Text('View All'),
+            ),
+          ],
         ),
         const SizedBox(height: 24),
-        GridView.count(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          childAspectRatio: 0.85,
+        GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20,
+            childAspectRatio: 1.3,
+          ),
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          children: const [
-            _ProjectCard(
-              title: 'Project 1',
-              subtitle: 'A Flutter mobile application',
-            ),
-            _ProjectCard(
-              title: 'Project 2',
-              subtitle: 'Web development project',
-            ),
-            _ProjectCard(
-              title: 'Project 3',
-              subtitle: 'Backend service integration',
-            ),
-            _ProjectCard(title: 'Project 4', subtitle: 'UI/UX design showcase'),
-          ],
+          itemCount: ProjectData.projects.length,
+          itemBuilder: (context, index) {
+            final project = ProjectData.projects[index];
+            return _ProjectCard(
+              title: project.title,
+              description: project.description,
+              technologies: project.technologies.take(3).toList(),
+              onTap: () {
+                Navigator.pushNamed(context, '/projects');
+              },
+            );
+          },
         ),
       ],
     );
@@ -45,51 +67,104 @@ class LandingProjectsSection extends StatelessWidget {
 
 class _ProjectCard extends StatelessWidget {
   final String title;
-  final String subtitle;
+  final String description;
+  final List<String> technologies;
+  final VoidCallback? onTap;
 
-  const _ProjectCard({required this.title, required this.subtitle});
+  const _ProjectCard({
+    required this.title,
+    required this.description,
+    required this.technologies,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 1,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: double.infinity,
-              height: 80,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Center(child: Icon(Icons.image, size: 40)),
-            ),
-            const SizedBox(height: 12),
-            Flexible(
-              child: Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+        ),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Project Icon/Placeholder
+              Container(
+                width: double.infinity,
+                height: 100,
+                decoration: BoxDecoration(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .primaryContainer
+                      .withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(8),
                 ),
+                child: Icon(
+                  Icons.web_rounded,
+                  size: 40,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              const SizedBox(height: 16),
+              // Title
+              Text(
+                title,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-            ),
-            const SizedBox(height: 8),
-            Flexible(
-              child: Text(
-                subtitle,
-                style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+              const SizedBox(height: 8),
+              // Description
+              Expanded(
+                child: Text(
+                  description,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withOpacity(0.7),
+                      ),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 12),
+              // Tech Tags
+              Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: technologies.map((tech) {
+                  return Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondaryContainer
+                          .withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      tech,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            fontSize: 11,
+                          ),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );
