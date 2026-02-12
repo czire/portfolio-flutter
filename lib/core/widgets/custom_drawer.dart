@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+  final void Function(int, BuildContext)? onTap;
+
+  const CustomDrawer({super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -33,26 +35,43 @@ class CustomDrawer extends StatelessWidget {
               ],
             ),
           ),
+          // Landing page
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Home'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/');
+              onTap?.call(0, context);
             },
           ),
+
+          // About Me page
           ListTile(
             leading: const Icon(Icons.person),
-            title: const Text('Profile'),
+            title: const Text('About Me'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/profile');
+              onTap?.call(1, context);
             },
           ),
+
+          // Projects page
           ListTile(
             leading: const Icon(Icons.work),
             title: const Text('Projects'),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, '/projects');
-            },
+            onTap: () => onTap?.call(2, context),
+          ),
+
+          // Skills page
+          ListTile(
+            leading: const Icon(Icons.psychology),
+            title: const Text('Skills'),
+            onTap: () => onTap?.call(3, context),
+          ),
+
+          // Contact page
+          ListTile(
+            leading: const Icon(Icons.phone),
+            title: const Text('Contact'),
+            onTap: () => onTap?.call(4, context),
           ),
           const Divider(),
           ListTile(
