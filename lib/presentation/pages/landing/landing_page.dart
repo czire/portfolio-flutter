@@ -11,19 +11,17 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(32),
-          child: Column(
-            children: [
-              const LandingHeaderSection(),
-              const SizedBox(height: 64),
-              const LandingProjectsSection(),
-              const LandingSkillsSection(),
-              const LandingCopyrightSection(),
-            ],
-          ),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          children: [
+            const LandingHeaderSection(),
+            const SizedBox(height: 64),
+            const LandingProjectsSection(),
+            const LandingSkillsSection(),
+            const LandingCopyrightSection(),
+          ],
         ),
       ),
     );

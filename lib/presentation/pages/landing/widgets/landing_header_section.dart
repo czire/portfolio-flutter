@@ -25,11 +25,13 @@ class LandingHeaderSection extends StatelessWidget {
                 const SizedBox(height: 32),
                 Row(
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        // TODO: Implement hire me functionality
-                      },
-                      child: const Text('Hire Me'),
+                    Flexible(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // TODO: Implement more about me functionality
+                        },
+                        child: const Text('About Me'),
+                      ),
                     ),
                     const SizedBox(width: 16),
                     OutlinedButton(

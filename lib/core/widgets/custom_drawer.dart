@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
   final void Function(int, BuildContext)? onTap;
+  final int currentIndex;
 
-  const CustomDrawer({super.key, this.onTap});
+  const CustomDrawer({super.key, this.onTap, this.currentIndex = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +40,8 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Home'),
+            selected: currentIndex == 0,
+            selectedTileColor: Theme.of(context).colorScheme.secondaryContainer,
             onTap: () {
               onTap?.call(0, context);
             },
@@ -48,6 +51,8 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('About Me'),
+            selected: currentIndex == 1,
+            selectedTileColor: Theme.of(context).colorScheme.secondaryContainer,
             onTap: () {
               onTap?.call(1, context);
             },
@@ -57,6 +62,8 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.work),
             title: const Text('Projects'),
+            selected: currentIndex == 2,
+            selectedTileColor: Theme.of(context).colorScheme.secondaryContainer,
             onTap: () => onTap?.call(2, context),
           ),
 
@@ -64,6 +71,8 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.psychology),
             title: const Text('Skills'),
+            selected: currentIndex == 3,
+            selectedTileColor: Theme.of(context).colorScheme.secondaryContainer,
             onTap: () => onTap?.call(3, context),
           ),
 
@@ -71,6 +80,8 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.phone),
             title: const Text('Contact'),
+            selected: currentIndex == 4,
+            selectedTileColor: Theme.of(context).colorScheme.secondaryContainer,
             onTap: () => onTap?.call(4, context),
           ),
           const Divider(),
