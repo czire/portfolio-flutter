@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:haber_portfolio/core/widgets/app_theme.dart';
 import 'package:haber_portfolio/core/widgets/custom_app_bar.dart';
 import 'package:haber_portfolio/core/widgets/custom_drawer.dart';
+import 'package:haber_portfolio/core/widgets/web_navbar.dart';
 import 'package:haber_portfolio/presentation/pages/contact/contact_page.dart';
 import 'package:haber_portfolio/presentation/pages/landing/landing_page.dart';
 import 'package:haber_portfolio/presentation/pages/about/about_page.dart';
@@ -43,30 +44,30 @@ class _SimplePortfolioAppState extends State<SimplePortfolioApp> {
       initialRoute: '/',
       routes: {
         '/': (context) => BasePage(
-              page: const LandingPage(),
-              currentIndex: 0,
-              toggleTheme: _toggleTheme,
-            ),
+          page: const LandingPage(),
+          currentIndex: 0,
+          toggleTheme: _toggleTheme,
+        ),
         '/about': (context) => BasePage(
-              page: const AboutPage(),
-              currentIndex: 1,
-              toggleTheme: _toggleTheme,
-            ),
+          page: const AboutPage(),
+          currentIndex: 1,
+          toggleTheme: _toggleTheme,
+        ),
         '/projects': (context) => BasePage(
-              page: const ProjectsPage(),
-              currentIndex: 2,
-              toggleTheme: _toggleTheme,
-            ),
+          page: const ProjectsPage(),
+          currentIndex: 2,
+          toggleTheme: _toggleTheme,
+        ),
         '/skills': (context) => BasePage(
-              page: const SkillsPage(),
-              currentIndex: 3,
-              toggleTheme: _toggleTheme,
-            ),
+          page: const SkillsPage(),
+          currentIndex: 3,
+          toggleTheme: _toggleTheme,
+        ),
         '/contact': (context) => BasePage(
-              page: const ContactPage(),
-              currentIndex: 4,
-              toggleTheme: _toggleTheme,
-            ),
+          page: const ContactPage(),
+          currentIndex: 4,
+          toggleTheme: _toggleTheme,
+        ),
       },
       debugShowCheckedModeBanner: false,
     );
@@ -93,34 +94,62 @@ class BasePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDesktop = MediaQuery.of(context).size.width > 800;
+
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'Czire\'s Portfolio',
-        onToggleTheme: toggleTheme,
-      ),
-      drawer: CustomDrawer(
-        currentIndex: currentIndex,
-        onTap: (index, context) {
-          Navigator.pop(context); // close drawer
-          switch (index) {
-            case 0:
-              _navigateTo(context, '/');
-              break;
-            case 1:
-              _navigateTo(context, '/about');
-              break;
-            case 2:
-              _navigateTo(context, '/projects');
-              break;
-            case 3:
-              _navigateTo(context, '/skills');
-              break;
-            case 4:
-              _navigateTo(context, '/contact');
-              break;
-          }
-        },
-      ),
+      appBar: isDesktop
+          ? WebNavbar(
+              currentIndex: currentIndex,
+              toggleTheme: toggleTheme,
+              onNavigate: (index) {
+                switch (index) {
+                  case 0:
+                    _navigateTo(context, '/');
+                    break;
+                  case 1:
+                    _navigateTo(context, '/about');
+                    break;
+                  case 2:
+                    _navigateTo(context, '/projects');
+                    break;
+                  case 3:
+                    _navigateTo(context, '/skills');
+                    break;
+                  case 4:
+                    _navigateTo(context, '/contact');
+                    break;
+                }
+              },
+            )
+          : CustomAppBar(
+              title: 'Czire\'s Portfolio',
+              onToggleTheme: toggleTheme,
+            ),
+      drawer: isDesktop
+          ? null
+          : CustomDrawer(
+              currentIndex: currentIndex,
+              onTap: (index, context) {
+                Navigator.pop(context); // close drawer
+                switch (index) {
+                  case 0:
+                    _navigateTo(context, '/');
+                    break;
+                  case 1:
+                    _navigateTo(context, '/about');
+                    break;
+                  case 2:
+                    _navigateTo(context, '/projects');
+                    break;
+                  case 3:
+                    _navigateTo(context, '/skills');
+                    break;
+                  case 4:
+                    _navigateTo(context, '/contact');
+                    break;
+                }
+              },
+            ),
       body: page,
     );
   }

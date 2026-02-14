@@ -19,25 +19,25 @@ class SkillData {
     Skill(
       name: 'JavaScript',
       icon: FontAwesomeIcons.js,
-      level: SkillLevel.advanced,
+      level: SkillLevel.intermediate,
       category: SkillCategory.frontend,
     ),
     Skill(
       name: 'TypeScript',
       icon: FontAwesomeIcons.js,
-      level: SkillLevel.advanced,
+      level: SkillLevel.intermediate,
       category: SkillCategory.frontend,
     ),
     Skill(
       name: 'React/Next.js',
       icon: FontAwesomeIcons.react,
-      level: SkillLevel.expert,
+      level: SkillLevel.intermediate,
       category: SkillCategory.frontend,
     ),
     Skill(
       name: 'Tailwind CSS',
       icon: FontAwesomeIcons.css3Alt,
-      level: SkillLevel.expert,
+      level: SkillLevel.intermediate,
       category: SkillCategory.frontend,
     ),
 
@@ -45,7 +45,7 @@ class SkillData {
     Skill(
       name: 'Flutter',
       icon: FontAwesomeIcons.flutter,
-      level: SkillLevel.intermediate,
+      level: SkillLevel.beginner,
       category: SkillCategory.mobile,
     ),
 
@@ -53,7 +53,7 @@ class SkillData {
     Skill(
       name: 'Node.js',
       icon: FontAwesomeIcons.nodeJs,
-      level: SkillLevel.advanced,
+      level: SkillLevel.intermediate,
       category: SkillCategory.backend,
     ),
     Skill(
@@ -65,7 +65,7 @@ class SkillData {
     Skill(
       name: 'SQL',
       icon: FontAwesomeIcons.database,
-      level: SkillLevel.intermediate,
+      level: SkillLevel.beginner,
       category: SkillCategory.backend,
     ),
     Skill(
@@ -77,7 +77,7 @@ class SkillData {
     Skill(
       name: 'Supabase/Firebase',
       icon: FontAwesomeIcons.fire,
-      level: SkillLevel.intermediate,
+      level: SkillLevel.beginner,
       category: SkillCategory.backend,
     ),
 
@@ -91,7 +91,7 @@ class SkillData {
     Skill(
       name: 'Vercel',
       icon: FontAwesomeIcons.cloud,
-      level: SkillLevel.expert,
+      level: SkillLevel.intermediate,
       category: SkillCategory.tools,
     ),
   ];
