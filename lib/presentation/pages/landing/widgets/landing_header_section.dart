@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class LandingHeaderSection extends StatelessWidget {
   const LandingHeaderSection({super.key});
@@ -61,7 +62,10 @@ class LandingHeaderSection extends StatelessWidget {
           style: Theme.of(context).textTheme.displayMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
-        ),
+        )
+            .animate()
+            .fadeIn(duration: 600.ms, delay: 100.ms)
+            .slideY(begin: 0.3, end: 0, duration: 600.ms, delay: 100.ms),
         const SizedBox(height: 16),
         Text(
           'Flutter Developer',
@@ -69,16 +73,22 @@ class LandingHeaderSection extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.w600,
               ),
-        ),
+        )
+            .animate()
+            .fadeIn(duration: 600.ms, delay: 250.ms)
+            .slideY(begin: 0.3, end: 0, duration: 600.ms, delay: 250.ms),
         const SizedBox(height: 24),
         Text(
           'I build practical web and mobile applications that solve real-world problems. '
           'Passionate about creating user-friendly solutions that make a positive impact on people\'s daily lives.',
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 height: 1.6,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.8),
               ),
-        ),
+        )
+            .animate()
+            .fadeIn(duration: 600.ms, delay: 400.ms)
+            .slideY(begin: 0.3, end: 0, duration: 600.ms, delay: 400.ms),
         const SizedBox(height: 32),
         Wrap(
           spacing: 16,
@@ -96,7 +106,10 @@ class LandingHeaderSection extends StatelessWidget {
                   vertical: 16,
                 ),
               ),
-            ),
+            )
+                .animate()
+                .fadeIn(duration: 600.ms, delay: 550.ms)
+                .scale(begin: const Offset(0.8, 0.8), delay: 550.ms),
             OutlinedButton.icon(
               onPressed: () => _copyEmail(context),
               icon: const Icon(Icons.email),
@@ -107,7 +120,10 @@ class LandingHeaderSection extends StatelessWidget {
                   vertical: 16,
                 ),
               ),
-            ),
+            )
+                .animate()
+                .fadeIn(duration: 600.ms, delay: 650.ms)
+                .scale(begin: const Offset(0.8, 0.8), delay: 650.ms),
           ],
         ),
       ],
@@ -120,7 +136,7 @@ class LandingHeaderSection extends StatelessWidget {
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -143,6 +159,9 @@ class LandingHeaderSection extends StatelessWidget {
           },
         ),
       ),
-    );
+    )
+        .animate()
+        .fadeIn(duration: 800.ms, delay: 200.ms)
+        .scale(begin: const Offset(0.8, 0.8), duration: 800.ms, delay: 200.ms);
   }
 }

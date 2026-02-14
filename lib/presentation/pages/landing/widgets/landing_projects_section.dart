@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:haber_portfolio/presentation/pages/projects/data/project_data.dart';
 
 class LandingProjectsSection extends StatelessWidget {
@@ -36,14 +37,17 @@ class LandingProjectsSection extends StatelessWidget {
               label: const Text('View All'),
             ),
           ],
-        ),
+        )
+            .animate()
+            .fadeIn(duration: 600.ms)
+            .slideX(begin: -0.2, end: 0, duration: 600.ms),
         const SizedBox(height: 24),
         GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: 20,
             mainAxisSpacing: 20,
-            childAspectRatio: 1.3,
+            childAspectRatio: 0.85,
           ),
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -54,6 +58,7 @@ class LandingProjectsSection extends StatelessWidget {
               title: project.title,
               description: project.description,
               technologies: project.technologies.take(3).toList(),
+              index: index,
               onTap: () {
                 Navigator.pushNamed(context, '/projects');
               },
@@ -69,12 +74,14 @@ class _ProjectCard extends StatelessWidget {
   final String title;
   final String description;
   final List<String> technologies;
+  final int index;
   final VoidCallback? onTap;
 
   const _ProjectCard({
     required this.title,
     required this.description,
     required this.technologies,
+    required this.index,
     this.onTap,
   });
 
@@ -85,7 +92,7 @@ class _ProjectCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(
-          color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+          color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
         ),
       ),
       child: InkWell(
@@ -104,7 +111,7 @@ class _ProjectCard extends StatelessWidget {
                   color: Theme.of(context)
                       .colorScheme
                       .primaryContainer
-                      .withOpacity(0.3),
+                      .withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
@@ -132,7 +139,7 @@ class _ProjectCard extends StatelessWidget {
                         color: Theme.of(context)
                             .colorScheme
                             .onSurface
-                            .withOpacity(0.7),
+                            .withValues(alpha: 0.7),
                       ),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
@@ -151,7 +158,7 @@ class _ProjectCard extends StatelessWidget {
                       color: Theme.of(context)
                           .colorScheme
                           .secondaryContainer
-                          .withOpacity(0.5),
+                          .withValues(alpha: 0.5),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -167,6 +174,14 @@ class _ProjectCard extends StatelessWidget {
           ),
         ),
       ),
-    );
+    )
+        .animate()
+        .fadeIn(duration: 600.ms, delay: Duration(milliseconds: 150 * index))
+        .slideY(
+          begin: 0.3,
+          end: 0,
+          duration: 600.ms,
+          delay: Duration(milliseconds: 150 * index),
+        );
   }
 }

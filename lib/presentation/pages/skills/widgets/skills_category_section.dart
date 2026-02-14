@@ -106,7 +106,7 @@ class _SkillCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(
-          color: levelColor.withOpacity(0.3),
+          color: levelColor.withValues(alpha: 0.3),
           width: 2,
         ),
       ),
@@ -140,10 +140,10 @@ class _SkillCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
-                color: levelColor.withOpacity(0.15),
+                color: levelColor.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: levelColor.withOpacity(0.4),
+                  color: levelColor.withValues(alpha: 0.4),
                 ),
               ),
               child: Text(

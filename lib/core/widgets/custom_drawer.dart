@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:haber_portfolio/core/helpers/download_cv.dart';
 
 class CustomDrawer extends StatelessWidget {
   final void Function(int, BuildContext)? onTap;
@@ -8,7 +9,6 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -90,6 +90,24 @@ class CustomDrawer extends StatelessWidget {
             leading: const Icon(Icons.download),
             title: const Text('Download CV'),
             onTap: () {
+              // TODO: Implement CV download functionality
+              DownloadCV.downloadCV()
+                  .then(
+                    (_) => ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('CV downloaded successfully!'),
+                      ),
+                    ),
+                  )
+                  .catchError(
+                    (error) => ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          'Failed to download CV. Please try again later.',
+                        ),
+                      ),
+                    ),
+                  );
               Navigator.pop(context);
             },
           ),

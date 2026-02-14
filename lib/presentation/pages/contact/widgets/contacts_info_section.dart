@@ -55,7 +55,7 @@ class ContactInfoSection extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
             side: BorderSide(
-              color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+              color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
             ),
           ),
           child: Padding(
@@ -89,14 +89,12 @@ class ContactInfoSection extends StatelessWidget {
                       label: 'Facebook',
                       onPressed: () =>
                           _launchUrl('https://facebook.com/yourprofile'),
-                      // TODO: Replace with your actual Facebook URL
                     ),
                     _SocialButton(
                       icon: FontAwesomeIcons.instagram,
                       label: 'Instagram',
                       onPressed: () =>
                           _launchUrl('https://instagram.com/yourprofile'),
-                      // TODO: Replace with your actual Instagram URL
                     ),
                     _SocialButton(
                       icon: FontAwesomeIcons.github,
@@ -140,7 +138,7 @@ class _ContactCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(
-          color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+          color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
         ),
       ),
       child: InkWell(
@@ -173,7 +171,7 @@ class _ContactCard extends StatelessWidget {
                             color: Theme.of(context)
                                 .colorScheme
                                 .onSurface
-                                .withOpacity(0.6),
+                                .withValues(alpha: 0.6),
                           ),
                     ),
                     const SizedBox(height: 4),

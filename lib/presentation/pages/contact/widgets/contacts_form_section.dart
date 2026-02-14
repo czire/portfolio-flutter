@@ -101,7 +101,7 @@ class _ContactFormSectionState extends State<ContactFormSection> {
                   fillColor: Theme.of(context)
                       .colorScheme
                       .surfaceContainerHighest
-                      .withOpacity(0.3),
+                      .withValues(alpha: 0.3),
                 ),
                 validator: (value) => _validateRequired(value, 'name'),
                 textInputAction: TextInputAction.next,
@@ -122,7 +122,7 @@ class _ContactFormSectionState extends State<ContactFormSection> {
                   fillColor: Theme.of(context)
                       .colorScheme
                       .surfaceContainerHighest
-                      .withOpacity(0.3),
+                      .withValues(alpha: 0.3),
                 ),
                 validator: _validateEmail,
                 keyboardType: TextInputType.emailAddress,
@@ -147,7 +147,7 @@ class _ContactFormSectionState extends State<ContactFormSection> {
                   fillColor: Theme.of(context)
                       .colorScheme
                       .surfaceContainerHighest
-                      .withOpacity(0.3),
+                      .withValues(alpha: 0.3),
                   alignLabelWithHint: true,
                 ),
                 validator: (value) => _validateRequired(value, 'message'),

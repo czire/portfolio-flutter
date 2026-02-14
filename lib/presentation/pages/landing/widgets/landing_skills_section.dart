@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:haber_portfolio/presentation/pages/landing/widgets/skill_item.dart';
+import 'package:haber_portfolio/presentation/pages/landing/widgets/skill_item_animated.dart';
 
 class LandingSkillsSection extends StatelessWidget {
   const LandingSkillsSection({super.key});
@@ -42,17 +43,23 @@ class LandingSkillsSection extends StatelessWidget {
               label: const Text('View All'),
             ),
           ],
-        ),
+        )
+            .animate()
+            .fadeIn(duration: 600.ms)
+            .slideX(begin: -0.2, end: 0, duration: 600.ms),
         const SizedBox(height: 24),
         // Skills List
         isMobile
             ? Column(
                 children: topSkills
+                    .asMap()
+                    .entries
                     .map(
-                      (skill) => SkillItem(
-                        name: skill.$1,
-                        icon: skill.$2,
-                        proficiency: skill.$3,
+                      (entry) => SkillItemAnimated(
+                        name: entry.value.$1,
+                        icon: entry.value.$2,
+                        proficiency: entry.value.$3,
+                        index: entry.key,
                       ),
                     )
                     .toList(),
@@ -64,11 +71,15 @@ class LandingSkillsSection extends StatelessWidget {
                     child: Column(
                       children: topSkills
                           .take(3)
+                          .toList()
+                          .asMap()
+                          .entries
                           .map(
-                            (skill) => SkillItem(
-                              name: skill.$1,
-                              icon: skill.$2,
-                              proficiency: skill.$3,
+                            (entry) => SkillItemAnimated(
+                              name: entry.value.$1,
+                              icon: entry.value.$2,
+                              proficiency: entry.value.$3,
+                              index: entry.key,
                             ),
                           )
                           .toList(),
@@ -79,11 +90,15 @@ class LandingSkillsSection extends StatelessWidget {
                     child: Column(
                       children: topSkills
                           .skip(3)
+                          .toList()
+                          .asMap()
+                          .entries
                           .map(
-                            (skill) => SkillItem(
-                              name: skill.$1,
-                              icon: skill.$2,
-                              proficiency: skill.$3,
+                            (entry) => SkillItemAnimated(
+                              name: entry.value.$1,
+                              icon: entry.value.$2,
+                              proficiency: entry.value.$3,
+                              index: entry.key + 3,
                             ),
                           )
                           .toList(),

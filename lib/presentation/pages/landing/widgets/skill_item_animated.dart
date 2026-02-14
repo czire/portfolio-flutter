@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-class SkillItem extends StatelessWidget {
+class SkillItemAnimated extends StatelessWidget {
   final String name;
   final IconData icon;
   final double proficiency; // 0.0 to 1.0
+  final int index;
 
-  const SkillItem({
+  const SkillItemAnimated({
     super.key,
     required this.name,
     required this.icon,
     required this.proficiency,
+    required this.index,
   });
 
   @override
@@ -35,13 +38,21 @@ class SkillItem extends StatelessWidget {
               Text(
                 ' ${(proficiency * 100).toInt()}%',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.primary,
-                ),
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
               ),
             ],
-          ),
+          )
+              .animate()
+              .fadeIn(duration: 600.ms, delay: Duration(milliseconds: 100 * index))
+              .slideX(
+                begin: -0.2,
+                end: 0,
+                duration: 600.ms,
+                delay: Duration(milliseconds: 100 * index),
+              ),
           const SizedBox(height: 8),
-          // Progress bar
+          // Progress bar with animation
           LinearPercentIndicator(
             percent: proficiency,
             lineHeight: 8.0,
@@ -51,7 +62,21 @@ class SkillItem extends StatelessWidget {
             progressColor: Theme.of(context).colorScheme.primary,
             barRadius: const Radius.circular(4),
             isRTL: false,
-          ),
+            animation: true,
+            animationDuration: 1500,
+            animateFromLastPercent: true,
+          )
+              .animate()
+              .fadeIn(
+                duration: 600.ms,
+                delay: Duration(milliseconds: 100 * index + 200),
+              )
+              .slideX(
+                begin: -0.3,
+                end: 0,
+                duration: 600.ms,
+                delay: Duration(milliseconds: 100 * index + 200),
+              ),
         ],
       ),
     );

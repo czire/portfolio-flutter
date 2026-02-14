@@ -29,14 +29,12 @@ class LandingCopyrightSection extends StatelessWidget {
               icon: FontAwesomeIcons.facebook,
               label: 'Facebook',
               onPressed: () => _launchUrl('https://facebook.com/czir333'),
-              // TODO: Replace with your actual Facebook profile URL
             ),
             const SizedBox(width: 16),
             _SocialIconButton(
               icon: FontAwesomeIcons.instagram,
               label: 'Instagram',
               onPressed: () => _launchUrl('https://instagram.com/czireee'),
-              // TODO: Replace with your actual Instagram profile URL
             ),
             const SizedBox(width: 16),
             _SocialIconButton(
@@ -58,7 +56,7 @@ class LandingCopyrightSection extends StatelessWidget {
         Text(
           '© $currentYear Czire Haber. All rights reserved.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
         ),
         const SizedBox(height: 32),
@@ -87,7 +85,7 @@ class _SocialIconButton extends StatelessWidget {
       iconSize: 24,
       style: IconButton.styleFrom(
         backgroundColor:
-            Theme.of(context).colorScheme.primaryContainer.withOpacity(0.5),
+            Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.5),
         foregroundColor: Theme.of(context).colorScheme.primary,
         padding: const EdgeInsets.all(12),
       ),
