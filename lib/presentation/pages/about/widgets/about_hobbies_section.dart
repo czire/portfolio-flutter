@@ -19,28 +19,31 @@ class AboutHobbiesSection extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         // Hobbies Grid
-        Wrap(
-          spacing: 16,
-          runSpacing: 16,
-          alignment: WrapAlignment.center,
-          children: const [
-            _HobbyChip(
-              icon: Icons.music_note,
-              label: 'Making Music',
-            ),
-            _HobbyChip(
-              icon: Icons.code,
-              label: 'Coding',
-            ),
-            _HobbyChip(
-              icon: Icons.headphones,
-              label: 'Listening to Music',
-            ),
-            _HobbyChip(
-              icon: Icons.local_cafe,
-              label: 'Matcha Lover',
-            ),
-          ],
+        Center(
+          child: Wrap(
+            spacing: 16,
+            runSpacing: 16,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            alignment: WrapAlignment.center,
+            children: const [
+              _HobbyChip(
+                icon: Icons.music_note,
+                label: 'Making Music',
+              ),
+              _HobbyChip(
+                icon: Icons.code,
+                label: 'Coding',
+              ),
+              _HobbyChip(
+                icon: Icons.headphones,
+                label: 'Listening to Music',
+              ),
+              _HobbyChip(
+                icon: Icons.local_cafe,
+                label: 'Matcha Lover',
+              ),
+            ],
+          ),
         ),
       ],
     );

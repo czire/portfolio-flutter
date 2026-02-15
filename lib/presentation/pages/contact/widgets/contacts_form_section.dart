@@ -41,6 +41,7 @@ class _ContactFormSectionState extends State<ContactFormSection> {
   }
 
   Future<void> _handleSubmit() async {
+    // TODO: Implement actual form submission logic (e.g., send data to backend or email service)
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isSubmitting = true;
@@ -54,7 +55,9 @@ class _ContactFormSectionState extends State<ContactFormSection> {
       // Show success message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: const Text('Message sent successfully! I\'ll get back to you soon.'),
+          content: const Text(
+            'Message sent successfully! I\'ll get back to you soon. (This is just a demo, no actual message is sent)',
+          ),
           backgroundColor: Theme.of(context).colorScheme.primary,
           duration: const Duration(seconds: 3),
         ),
@@ -78,9 +81,9 @@ class _ContactFormSectionState extends State<ContactFormSection> {
       children: [
         Text(
           'Send Me a Message',
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 24),
         Form(
@@ -98,10 +101,9 @@ class _ContactFormSectionState extends State<ContactFormSection> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   filled: true,
-                  fillColor: Theme.of(context)
-                      .colorScheme
-                      .surfaceContainerHighest
-                      .withValues(alpha: 0.3),
+                  fillColor: Theme.of(
+                    context,
+                  ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
                 ),
                 validator: (value) => _validateRequired(value, 'name'),
                 textInputAction: TextInputAction.next,
@@ -119,10 +121,9 @@ class _ContactFormSectionState extends State<ContactFormSection> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   filled: true,
-                  fillColor: Theme.of(context)
-                      .colorScheme
-                      .surfaceContainerHighest
-                      .withValues(alpha: 0.3),
+                  fillColor: Theme.of(
+                    context,
+                  ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
                 ),
                 validator: _validateEmail,
                 keyboardType: TextInputType.emailAddress,
@@ -144,10 +145,9 @@ class _ContactFormSectionState extends State<ContactFormSection> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   filled: true,
-                  fillColor: Theme.of(context)
-                      .colorScheme
-                      .surfaceContainerHighest
-                      .withValues(alpha: 0.3),
+                  fillColor: Theme.of(
+                    context,
+                  ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
                   alignLabelWithHint: true,
                 ),
                 validator: (value) => _validateRequired(value, 'message'),
@@ -171,9 +171,7 @@ class _ContactFormSectionState extends State<ContactFormSection> {
                       ? const SizedBox(
                           height: 20,
                           width: 20,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                          ),
+                          child: CircularProgressIndicator(strokeWidth: 2),
                         )
                       : const Text(
                           'Send Message',

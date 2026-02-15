@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:haber_portfolio/core/helpers/download_cv.dart';
+import 'package:haber_portfolio/core/helpers/logo.dart';
 
 class CustomDrawer extends StatelessWidget {
   final void Function(int, BuildContext)? onTap;
@@ -17,22 +18,28 @@ class CustomDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
+            child: Row(
               children: [
-                Text(
-                  'Czire Haber',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8.0),
-                Text(
-                  'Matcha forever <33',
-                  style: TextStyle(color: Colors.white70),
+                buildLogo(context),
+                const SizedBox(width: 16.0),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Czire Haber',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    // const SizedBox(height: 8.0),
+                    Text(
+                      'Flutter Developer',
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -90,7 +97,6 @@ class CustomDrawer extends StatelessWidget {
             leading: const Icon(Icons.download),
             title: const Text('Download CV'),
             onTap: () {
-              // TODO: Implement CV download functionality
               DownloadCV.downloadCV()
                   .then(
                     (_) => ScaffoldMessenger.of(context).showSnackBar(

@@ -37,6 +37,8 @@ class ProjectCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // TODO: Add project thumbnail or icon here
+              // TODO: Put the project title and date below the project thumbnail
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

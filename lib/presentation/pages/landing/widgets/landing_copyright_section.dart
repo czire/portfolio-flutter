@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:haber_portfolio/core/helpers/logo.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LandingCopyrightSection extends StatelessWidget {
@@ -60,6 +61,7 @@ class LandingCopyrightSection extends StatelessWidget {
               ),
         ),
         const SizedBox(height: 32),
+        buildLogo(context),
       ],
     );
   }

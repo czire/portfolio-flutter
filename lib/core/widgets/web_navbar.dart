@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:haber_portfolio/core/helpers/logo.dart';
 
 class WebNavbar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback toggleTheme;
@@ -18,14 +19,7 @@ class WebNavbar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         children: [
           // Logo / Image
-          ClipOval(
-            child: Image.asset(
-              'assets/images/profile.jpg',
-              width: 36,
-              height: 36,
-              fit: BoxFit.cover,
-            ),
-          ),
+          buildLogo(context, size: 40),
           const SizedBox(width: 12),
           const Text("Czire's Portfolio"),
         ],

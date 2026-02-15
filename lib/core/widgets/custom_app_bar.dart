@@ -25,14 +25,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               () {
                 Scaffold.of(context).openDrawer();
               },
-          icon: ClipOval(
-            child: Image.asset(
-              'assets/images/burger.jpg',
-              width: 32,
-              height: 32,
-              fit: BoxFit.cover,
-            ),
-          ),
+          icon: const Icon(Icons.menu), 
           tooltip: 'Menu',
         ),
       ),

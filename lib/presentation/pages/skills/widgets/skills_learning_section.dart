@@ -35,11 +35,13 @@ class SkillsLearningSection extends StatelessWidget {
                 size: 28,
               ),
               const SizedBox(width: 12),
-              Text(
-                'Currently Learning',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+              Expanded(
+                child: Text(
+                  'Currently Learning',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
               ),
             ],
           ),

@@ -144,7 +144,7 @@ class LandingHeaderSection extends StatelessWidget {
       ),
       child: ClipOval(
         child: Image.asset(
-          'assets/images/profile.jpg',
+          'assets/images/profile_1.jpg',
           width: 200,
           height: 200,
           fit: BoxFit.cover,
